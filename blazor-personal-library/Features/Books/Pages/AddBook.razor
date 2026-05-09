@@ -1,0 +1,61 @@
+﻿@page "/add"
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+
+<h3 class="fw-bold text-center my-3 bg-primary rounded text-white p-2">New Book</h3>
+
+<div class="d-flex flex-column shadow-lg border-0 rounded-5">
+    <form>
+        <div class="mb-3">
+
+            <label class="form-label">Title</label>
+            <input class="form-control border-secondary" @bind="title" placeholder="El Quijote" />
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">Author</label>
+            <input class="form-control border-secondary" @bind="author" placeholder="Cerbantes" />
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">State</label>
+            <input class="form-check " type="checkbox" @bind="state" placeholder="True" />
+        </div>
+
+        <BPButton OnClick="AddNewBook" Text="Add Book" />
+        
+    </form>
+</div>
+
+
+<div class="mt-5">
+    <BooksList Books="books" />
+
+</div>
+
+@code {
+
+    private List<Book>? books = new();
+
+    private string title = string.Empty;
+    private string author = string.Empty;
+    private bool state = false;
+
+    private void AddNewBook()
+    {
+        var book = new Book
+            {
+                Author = author,
+                Title = title,
+                State = state
+            };
+
+        this.books!.Add(book);
+    } 
+
+
+}

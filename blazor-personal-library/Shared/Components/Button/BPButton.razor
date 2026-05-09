@@ -1,0 +1,8 @@
+﻿<div class="my-2">
+    <button class="btn btn-primary w-100" @onclick="OnClick" type="button"> @Text </button>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public string Text { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
+}

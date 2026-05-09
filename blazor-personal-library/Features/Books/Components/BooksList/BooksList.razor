@@ -1,17 +1,17 @@
-﻿@if (Books != null)
+﻿
+@if (Books != null)
 {
 
     <ul>
         @foreach (var book in Books)
         {
-            <BooksListItem Author="@book.Author" State="@book.State" Title="@book.Title" />
+            <BooksListItem @key="book.Id" Author="@book.Author" State="@book.State" Title="@book.Title" />
         }
     </ul>
     
 } else
 {
-    // TODO --> component
-    <text>Loading....</text>
+    <Loading/>
 }
 
 
