@@ -1,20 +1,18 @@
 ﻿<div class="card border-0 shadow-lg rounded-5 m-5 p-4 d-flex flex-column gap-2"
      style="background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
     
-    <h4 class="fw-bold text-primary">@Title</h4>
-    <p class="text-secondary mb-0">@State</p>
-    <p class="text-muted">@Author</p>
+    <h4 class="fw-bold text-primary">@Book.Title</h4>
+    <p class="text-secondary mb-0">@Book.State</p>
+    <p class="text-muted">@Book.Author</p>
+
+    <BPButton Text="Remove" OnClick="@(() => RemoveBook.InvokeAsync(Book))" />
+    
 </div>
 
 
 
 
 @code {
-
-    [Parameter, EditorRequired] public string Title { get; set; }
-
-    [Parameter] public bool State { get; set; } = false; 
-
-    [Parameter, EditorRequired] public string Author { get; set; }
-
+    [Parameter, EditorRequired] public Book Book { get; set; }
+    [Parameter] public EventCallback<Book> RemoveBook { get; set; }
 }

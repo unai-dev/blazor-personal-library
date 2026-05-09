@@ -1,11 +1,11 @@
 ﻿
-@if (Books != null)
+@if (books != null)
 {
 
     <ul>
-        @foreach (var book in Books)
+        @foreach (var book in books!)
         {
-            <BooksListItem @key="book.Id" Author="@book.Author" State="@book.State" Title="@book.Title" />
+            <BooksListItem @key="book.Id" Book="book" RemoveBook="RemoveBook"/>
         }
     </ul>
     
@@ -18,5 +18,24 @@
 
 
 @code {
-    [Parameter, EditorRequired] public List<Book>? Books { get; set; } = null;
+    [Parameter, EditorRequired] public List<Book>? Books { get; set; }
+
+    private List<Book>? books = null;
+
+    protected override void OnInitialized()
+    {
+        books = Books;
+    }
+
+    protected override void OnParametersSet()
+    {
+        books = Books;
+    }
+
+
+    private void RemoveBook(Book book)
+    {
+        books!.Remove(book);
+    }
+
 }
