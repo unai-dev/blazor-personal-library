@@ -1,0 +1,29 @@
+﻿@typeparam T
+
+@if (List is null)
+{
+    <Loading />
+
+}
+else if (List.Count == 0)
+{
+    <text>No hay elementos a mostrar</text>
+}
+else
+{
+    <ul>
+        @foreach (var element in List)
+        {
+            @ChildContent(element);
+        }
+    </ul>
+}
+
+
+@code {
+
+    [Parameter, EditorRequired] public List<T> List { get; set; }
+    [Parameter, EditorRequired] public RenderFragment<T> ChildContent { get; set; }
+
+
+}

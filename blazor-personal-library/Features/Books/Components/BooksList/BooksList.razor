@@ -1,21 +1,6 @@
-﻿@if (Books is null)
-{
-    <Loading />
-
-}
-else if (Books!.Count == 0)
-{
-    <text>No hay elementos a mostrar</text>
-}
-else
-{
-    <ul>
-        @foreach (var book in Books!)
-        {
-            <BooksListItem @key="book.Id" Book="book" RemoveBook="RemoveBook" />
-        }
-    </ul>
-}
+﻿<GenericList List="Books">
+    <BooksListItem @key="context.Id" Book="context" RemoveBook="RemoveBook" />
+</GenericList>
 
 
 
