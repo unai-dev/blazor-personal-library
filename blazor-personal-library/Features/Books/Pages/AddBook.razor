@@ -1,6 +1,7 @@
 ﻿@page "/add"
 @rendermode InteractiveServer
 @attribute [StreamRendering]
+@inject IBookService bookService
 
 
 <h3 class="fw-bold text-center my-3 bg-primary rounded text-white p-2">New Book</h3>
@@ -16,7 +17,7 @@
         <div class="mb-3">
 
             <label class="form-label fw-bold">Author</label>
-            <input class="form-control text-muted" @bind="author" placeholder="Cerbantes" required />
+            <input class="form-control text-muted" @bind="author" placeholder="Cervantes" required />
 
         </div>
 
@@ -31,15 +32,7 @@
     </form>
 </div>
 
-
-<div class="mt-5">
-    <BooksList Books="books" />
-
-</div>
-
 @code {
-
-    private List<Book>? books = new();
 
     private string title = string.Empty;
     private string author = string.Empty;
@@ -59,7 +52,8 @@
                 State = state
             };
 
-        this.books!.Add(book);
+        bookService.AddNewBook(book);
+        StateHasChanged();
     } 
 
 

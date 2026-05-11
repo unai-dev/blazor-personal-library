@@ -1,10 +1,14 @@
 using blazor_personal_library;
+using blazor_personal_library.Features.Books.Interfaces;
+using blazor_personal_library.Features.Books.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddScoped<IBookService, BookService>();
 
 var app = builder.Build();
 
