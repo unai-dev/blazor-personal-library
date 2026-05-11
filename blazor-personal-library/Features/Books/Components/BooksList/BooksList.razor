@@ -1,4 +1,7 @@
-﻿<GenericList List="Books">
+﻿@inject IJSRuntime jSRuntime
+
+
+<GenericList List="Books">
     <BooksListItem @key="context.Id" Book="context" RemoveBook="RemoveBook" />
 </GenericList>
 
@@ -8,9 +11,17 @@
 @code {
     [Parameter, EditorRequired] public List<Book>? Books { get; set; }
 
-    private void RemoveBook(Book book)
+    private async Task RemoveBook(Book book)
     {
-        Books!.Remove(book);
+        string message = $"¿Desea eliminar el libro {book.Title}?";
+
+        var confirm = await jSRuntime.Confirm(message);
+
+        if (confirm)
+        {
+            Books!.Remove(book);
+        }
+
     }
 
 }

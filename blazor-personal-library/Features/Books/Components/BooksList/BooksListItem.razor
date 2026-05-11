@@ -1,11 +1,14 @@
-﻿<div class="card border-0 shadow-lg rounded-5 m-5 p-4 d-flex flex-column gap-2"
+﻿<div class="card border-primary shadow-lg rounded-5 m-5 p-4 d-flex flex-column gap-2"
      style="background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
     
-    <h4 class="fw-bold text-primary">@Book.Title</h4>
+    <h5 class="fw-bold fst-italic">@Book.Title</h5>
     <p class="text-secondary mb-0">@Book.State</p>
     <p class="text-muted">@Book.Author</p>
 
-    <BPButton Variant="Variant.Danger" OnClick="@(() => RemoveBook.InvokeAsync(Book))">Remove</BPButton>
+    <div class="d-flex flex-row justify-content-end gap-3">
+        <BPButton Variant="Variant.Danger" Width="Width.Full" Size="Size.Md" class="px-5" OnClick="@(() => RemoveBook.InvokeAsync(Book))">Remove</BPButton>
+        <BPButton Variant="Variant.Success" Width="Width.Full" Size="Size.Md" class="px-5">Edit</BPButton>
+    </div>  
     
 </div>
 
