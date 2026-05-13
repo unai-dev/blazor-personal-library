@@ -2,6 +2,7 @@
 @rendermode InteractiveServer
 @attribute [StreamRendering]
 @inject IBookService bookService
+@inject NavigationManager navigationManager
 
 
 <h3 class="fw-bold text-center my-3 bg-primary rounded text-white p-2">New Book</h3>
@@ -54,6 +55,8 @@
 
         bookService.AddNewBook(book);
         StateHasChanged();
+
+        navigationManager.NavigateTo("/");
     } 
 
 
