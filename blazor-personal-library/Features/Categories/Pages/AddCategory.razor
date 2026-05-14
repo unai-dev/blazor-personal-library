@@ -1,18 +1,16 @@
-﻿
-@page "/category/add"
+﻿@page "/category/add"
 @rendermode InteractiveServer
 
 <h3>Add Category</h3>
 
 
-<EditForm Model="category">
-    <div class="mb-3">
-        <label>Name:</label>
-    </div>
+<EditForm Model="category" OnValidSubmit="Add">
 
-    <InputText class="form-control" @bind-Value="category.Name" />
+    <DataAnnotationsValidator/>
 
-    <BPButton OnClick="Add" />
+    <BPInputText Label="Name" @bind-Value="category.Name" PlaceHolder="Action"/>
+
+    <BPButton ButtonType="ButtonType.Sumbit"/>
 </EditForm>
 
 

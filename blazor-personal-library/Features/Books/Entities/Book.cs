@@ -1,10 +1,16 @@
-﻿namespace blazor_personal_library.Features.Books.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace blazor_personal_library.Features.Books.Entities
 {
     public class Book
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "The field {0} is required")]
         public string? Title { get; set; }
-        public bool? State { get; set; } = false;
+        public bool State { get; set; } = false;
+
+        [Required(ErrorMessage = "The field {0} is required")]
         public string? Author { get; set; }
         public string? BookImage { get; set; }
 

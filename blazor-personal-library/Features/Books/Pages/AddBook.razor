@@ -8,56 +8,56 @@
 <h3 class="fw-bold text-center my-3 bg-primary rounded text-white p-2">New Book</h3>
 
 <div class="d-flex flex-column shadow-lg border-0 rounded-5 p-4">
-    <EditForm Model="book">
-        <div class="mb-3">
+    <EditForm Model="book" OnValidSubmit="AddNewBook">
 
-            <label class="form-label fw-bold">Title</label>
-            <InputText class="form-control text-muted" @bind-Value="title" placeholder="El Quijote" required />
+        <DataAnnotationsValidator />
+
+        <div class="mb-3">
+            <BPInputText Label="Title" @bind-Value="book.Title" PlaceHolder="El Quijote" />
         </div>
 
         <div class="mb-3">
+            <BPInputText Label="Author" @bind-Value="book.Author" PlaceHolder="Cervantes" />
+        </div>
 
-            <label class="form-label fw-bold">Author</label>
-            <InputText class="form-control text-muted" @bind-Value="author" placeholder="Cervantes" required />
-
+        <div class="mb-3">
+            <label class="mb-2">Book Image:</label>
+            <InputFile class="form-control text-muted" @bind-Value="book.BookImage"/>
         </div>
 
         <div class="mb-3">
 
             <label class="form-label fw-bold">State</label>
-            <InputCheckbox class="form-check text-muted" type="checkbox" @bind-Value="state" />
+            <InputCheckbox class="form-check text-muted" type="checkbox" @bind-Value="book.State" />
         </div>
 
-        <BPButton Variant="Variant.Success" Width="Width.Full" OnClick="AddNewBook">Add Book</BPButton>
-        
+        <BPButton Variant="Variant.Success" Width="Width.Full">Add Book</BPButton>
+
     </EditForm>
 </div>
 
 @code {
     private Book book = new Book();
-    private string title = string.Empty;
-    private string author = string.Empty;
-    private bool state = false;
 
     private void AddNewBook()
     {
-        if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(author))
+        if (string.IsNullOrEmpty(book.Title) || string.IsNullOrEmpty(book.Author))
         {
             return;
         }
 
-        var book = new Book
-            {
-                Author = author,
-                Title = title,
-                State = state
-            };
+        var newBook = new Book
+        {
+            Author = book.Author,
+            Title = book.Title,
+            State = book.State
+        };
 
-        bookService.AddNewBook(book);
+        bookService.AddNewBook(newBook);
         StateHasChanged();
 
         navigationManager.NavigateTo("/");
-    } 
+    }
 
 
 }

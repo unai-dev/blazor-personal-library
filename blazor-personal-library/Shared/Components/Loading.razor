@@ -1,2 +1,6 @@
-﻿<img src="assets/icons/Loading_icon_tp.gif" width="100"/>
+﻿<p class="text-center"> @ChildContent </p>
 
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } =@<p>Loading...</p>;
+}
