@@ -1,5 +1,4 @@
 ﻿@page "/book/add"
-@using blazor_personal_library.Shared.Components.Headers
 
 
 @inject IBookService bookService
@@ -23,7 +22,7 @@
 
         <div class="mb-3">
             <label class="mb-2">Book Image:</label>
-            <InputFile class="form-control text-muted" @bind-Value="book.BookImage"/>
+            <InputFile class="form-control text-muted" @bind-Value="book.BookImage" />
         </div>
 
         <div class="mb-3">
@@ -42,19 +41,13 @@
 
     private void AddNewBook()
     {
-        if (string.IsNullOrEmpty(book.Title) || string.IsNullOrEmpty(book.Author))
-        {
-            return;
-        }
-
-        var newBook = new Book
+        bookService.AddNewBook(new Book
         {
             Author = book.Author,
             Title = book.Title,
             State = book.State
-        };
+        });
 
-        bookService.AddNewBook(newBook);
         StateHasChanged();
 
         navigationManager.NavigateTo("/");
