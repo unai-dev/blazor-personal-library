@@ -1,0 +1,8 @@
+﻿<NavLink href="@Href" class="text-decoration-none text-white icon-link-hover fw-bold bg-primary rounded shadow-lg m-2 py-2 px-4">
+    @ChildContent
+</NavLink>
+
+@code {
+    [Parameter, EditorRequired] public RenderFragment ChildContent { get; set; }
+    [Parameter, EditorRequired] public string Href { get; set; }
+}

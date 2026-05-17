@@ -1,0 +1,7 @@
+﻿<h3 class="fw-bold my-3"> @Header </h3>
+<p class="text-muted fw-semibold"> @SubHeader </p>
+
+@code {
+    [Parameter, EditorRequired] public string Header { get; set; }
+    [Parameter] public string? SubHeader { get; set; }
+}
