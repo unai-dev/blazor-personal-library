@@ -1,0 +1,43 @@
+﻿@page "/authors/add"
+@inject IAuthorService authorService
+@inject NavigationManager navigationManager
+
+<MainHeader Header="Agregar Autor" SubHeader="Agrega un nuevo autor" />
+
+<EntityForm Entity="@author" CurrentPost="@currentPost" FormPostWithExit="@postWithExit" OnValidSumbit="@Add">
+    <BPInputText Label="Nombre" @bind-Value="@author.Name" />
+    <BPInputImage Label="Autor" SelectImage="f => author.ImageFile = f" ImageURL="@author.ImageUrl" />
+</EntityForm>
+
+@code {
+    private Author author = null!;
+    private bool currentPost = false;
+    private bool postWithExit = false;
+
+
+    protected override void OnInitialized()
+    {
+        author = new Author();
+    }
+
+    private async Task Add()
+    {
+        if (!currentPost)
+        {
+            currentPost = true;
+            Console.WriteLine("Agregando autor...");
+            await Task.Delay(2000);
+
+            authorService.AddAuthor(new Author
+            {
+                Name = author.Name,
+                ImageUrl = author.ImageUrl
+            });
+            currentPost = false;
+            postWithExit = true;
+            StateHasChanged();
+            navigationManager.NavigateTo("/authors");
+        }
+        
+    }
+}
